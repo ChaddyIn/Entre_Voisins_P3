@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <ImageView
+        android:id="@+id/imageDetailNeighbourView"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_account" />
+
+
+    <RelativeLayout
+
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="40dp"
+
+        android:background="#FEFEFE"
+
+
+
+
+        android:layout_below="@+id/imageDetailNeighbourView">
+
+        <TextView
+
+            android:id="@+id/detailPrenom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+
+
+
+            />
+
+        <TextView
+
+            android:id="@+id/detailAdresse"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:textSize="10dp"
+            android:layout_below="@id/detailPrenom"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+
+
+
+            tools:layout_editor_absoluteX="43dp" />
+
+        <TextView
+
+            android:id="@+id/detailTel"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:textSize="10dp"
+            android:layout_below="@id/detailAdresse"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+
+
+
+            tools:layout_editor_absoluteX="43dp" />
+
+        <TextView
+
+            android:id="@+id/detailFacebook"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:textSize="10dp"
+            android:layout_below="@id/detailTel"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+
+
+
+            tools:layout_editor_absoluteX="43dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/relativeLayout1"
+
+
+        android:layout_marginBottom="10dp"
+
+        android:background="#FEFEFE"
+
+        >
+
+        <TextView
+
+            android:id="@+id/aProposDeMoi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="A propos de moi"
+
+
+            />
+
+        <TextView
+
+            android:id="@+id/textDetailNeighbour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/aProposDeMoi"
+            android:textSize="10dp"
+
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp" />
+
+    </RelativeLayout>
+
+
+
+
+    <android.support.design.widget.FloatingActionButton
+
+        android:layout_below="@id/imageDetailNeighbourView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_favorite_24dp"
+
+       ></android.support.design.widget.FloatingActionButton>
+
+</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+

@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -22,11 +23,18 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
 
-public class NeighbourFragment extends Fragment {
+public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerViewAdapter.OnClickNeighbourListener {
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
+
+    public static final String AVATAR_NEIGHBOUR = "AVATAR_DETAIL_NEIGHBOUR";
+    public static final String DETAIL_TEXT_NEIGHBOUR = "DETAIL_TEXT_NEIGHBOUR";
+    public static final String DETAIL_PRENOM = "DETAIL_PRENOM";
+    public static final String DETAIL_ADRESSE = "DETAIL_ADRESSE";
+    public static final String DETAIL_TEL = "DETAIL_TEL";
+    public static final String DETAIL_FACEBOOK = "DETAIL_FACEBOOK";
 
 
     /**
@@ -60,7 +68,7 @@ public class NeighbourFragment extends Fragment {
      */
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, this));
     }
 
     @Override
@@ -89,5 +97,20 @@ public class NeighbourFragment extends Fragment {
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
+    }
+
+    @Override
+    public void onClickNeighbourClick(int position) {
+
+        Intent intent = new Intent(getContext(), DetailNeighbourActivity.class);
+
+        intent.putExtra(DETAIL_TEXT_NEIGHBOUR, mNeighbours.get(position).getAboutMe());
+        intent.putExtra(AVATAR_NEIGHBOUR , mNeighbours.get(position).getAvatarUrl());
+        intent.putExtra(DETAIL_PRENOM, mNeighbours.get(position).getName());
+        intent.putExtra(DETAIL_ADRESSE, mNeighbours.get(position).getAddress());
+        intent.putExtra(DETAIL_TEL, mNeighbours.get(position).getPhoneNumber());
+
+        startActivity(intent);
+
     }
 }

@@ -24,16 +24,18 @@ import butterknife.ButterKnife;
 public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeighbourRecyclerViewAdapter.ViewHolder> {
 
     private final List<Neighbour> mNeighbours;
+    private OnClickNeighbourListener mOnClickNeighbourListener;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, OnClickNeighbourListener onClickNeighbourListener) {
         mNeighbours = items;
+        this.mOnClickNeighbourListener = onClickNeighbourListener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_neighbour, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, mOnClickNeighbourListener);
     }
 
     @Override
@@ -58,17 +60,35 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         return mNeighbours.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.item_list_avatar)
         public ImageView mNeighbourAvatar;
         @BindView(R.id.item_list_name)
         public TextView mNeighbourName;
         @BindView(R.id.item_list_delete_button)
         public ImageButton mDeleteButton;
+        OnClickNeighbourListener onClickNeighbourListener;
 
-        public ViewHolder(View view) {
+
+
+        public ViewHolder(View view, OnClickNeighbourListener onClickNeighbourListener) {
             super(view);
-            ButterKnife.bind(this, view);
+            ButterKnife.bind(this, view );
+
+            view.setOnClickListener(this);
+            this.onClickNeighbourListener = onClickNeighbourListener;
         }
+
+
+        @Override
+        public void onClick(View view) {
+            onClickNeighbourListener.onClickNeighbourClick(getAdapterPosition());
+
+        }
+    }
+
+    public interface OnClickNeighbourListener{
+        void onClickNeighbourClick (int position);
+
     }
 }
