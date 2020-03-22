@@ -16,11 +16,38 @@
     <ImageView
         android:id="@+id/imageDetailNeighbourView"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="240dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_account" />
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_keyboard_backspace_black_24dp"
+        />
+
+    <TextView
+
+        android:id="@+id/detailPrenomNeighbour"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="#FAFEFE"
+
+
+
+
+    />
 
 
     <RelativeLayout
@@ -30,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
 
         android:background="#FEFEFE"
 
@@ -89,7 +116,7 @@
 
             android:id="@+id/detailFacebook"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="13dp"
             android:textSize="10dp"
             android:layout_below="@id/detailTel"
             android:layout_marginLeft="15dp"
@@ -153,6 +180,7 @@
 
     <android.support.design.widget.FloatingActionButton
 
+        android:id="@+id/ButtonFav"
         android:layout_below="@id/imageDetailNeighbourView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
