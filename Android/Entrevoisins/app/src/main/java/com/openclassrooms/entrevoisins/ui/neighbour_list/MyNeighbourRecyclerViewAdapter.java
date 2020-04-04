@@ -1,5 +1,8 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.DummyNeighbourApiService;
+import com.openclassrooms.entrevoisins.service.DummyNeighbourGenerator;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -25,10 +30,20 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
     private final List<Neighbour> mNeighbours;
     private OnClickNeighbourListener mOnClickNeighbourListener;
+    private Boolean boolForTab;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, OnClickNeighbourListener onClickNeighbourListener) {
+
+
+
+
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, OnClickNeighbourListener onClickNeighbourListener, Boolean boolForTab ) {
+        this.boolForTab = boolForTab;
         mNeighbours = items;
         this.mOnClickNeighbourListener = onClickNeighbourListener;
+    }
+
+    public Boolean getBoolForTab(){
+        return boolForTab;
     }
 
     @Override
@@ -36,6 +51,8 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_neighbour, parent, false);
         return new ViewHolder(view, mOnClickNeighbourListener);
+
+
     }
 
     @Override
@@ -47,10 +64,21 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
+        if(boolForTab == false){
+            holder.mDeleteButton.setVisibility(View.GONE);
+        }
+
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
+
+
+
             public void onClick(View v) {
-                EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+
+
+                    EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+
+
             }
         });
     }

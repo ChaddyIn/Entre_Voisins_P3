@@ -75,9 +75,19 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
+            android:textSize="14dp"
 
 
 
+
+            />
+
+        <View
+            android:id="@+id/separation1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D9E1DF"
+            android:layout_below="@id/detailPrenom"
             />
 
         <TextView
@@ -86,15 +96,16 @@
             android:layout_width="match_parent"
             android:layout_height="12dp"
             android:textSize="10dp"
-            android:layout_below="@id/detailPrenom"
+            android:layout_below="@id/separation1"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
 
-
-
             tools:layout_editor_absoluteX="43dp" />
+
+
+
 
         <TextView
 
@@ -112,6 +123,8 @@
 
             tools:layout_editor_absoluteX="43dp" />
 
+
+
         <TextView
 
             android:id="@+id/detailFacebook"
@@ -123,8 +136,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
-
-
 
             tools:layout_editor_absoluteX="43dp" />
 
@@ -155,9 +166,18 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
+            android:textSize="14dp"
             android:text="A propos de moi"
 
 
+            />
+        <View
+
+            android:id="@+id/separation2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D9E1DF"
+            android:layout_below="@id/aProposDeMoi"
             />
 
         <TextView
@@ -165,8 +185,8 @@
             android:id="@+id/textDetailNeighbour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/aProposDeMoi"
-            android:textSize="10dp"
+            android:layout_below="@id/separation2"
+            android:textSize="12dp"
 
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
@@ -187,6 +207,9 @@
         android:layout_marginTop="-10dp"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_favorite_24dp"
+        android:backgroundTint="@color/cardview_light_background"
+        app:borderWidth="0dp"
+
 
        ></android.support.design.widget.FloatingActionButton>
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -34,7 +35,7 @@ public class DetailNeighbourActivity extends AppCompatActivity implements Serial
 
     FloatingActionButton buttonFav;
 
-    public Boolean isFavNeighbour;
+
 
     private NeighbourApiService mApiServiceFav;
 
@@ -103,14 +104,16 @@ public class DetailNeighbourActivity extends AppCompatActivity implements Serial
 
         detailPrenomNeighbour.setText(DetailPrenom);
         textDetailNeighbour.setText(DetailAboutNeigbourRecup);
-        detailPrenom.setText(DetailPrenom);
-        detailAdresse.setText(DetailAdresse);
+        detailPrenom.setText(" "+DetailPrenom);
+        detailAdresse.setText(" "+DetailAdresse);
         detailAdresse.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_location_14dp, 0, 0, 0);
-        detailTel.setText(DetailTel);
+        detailTel.setText(" "+DetailTel);
         detailTel.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.icone_phone_14dp, 0, 0, 0);
-        detailFacebook.setText("www.facebook.fr/" + DetailPrenom.toLowerCase());
+        detailFacebook.setText(" www.facebook.fr/" + DetailPrenom.toLowerCase());
         detailFacebook.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.icone_facebook_14dp, 0, 0, 0);
         Glide.with(getApplicationContext()).load(UrlImageNeighbour).into(detailImageNeighbour);
+
+
 
     }
 

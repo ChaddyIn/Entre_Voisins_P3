@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
@@ -33,9 +38,11 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
-
+    private MyNeighbourRecyclerViewAdapter mNeighbourR;
 
     Boolean forFav = true;
+
+
 
     public static final String AVATAR_NEIGHBOUR = "AVATAR_DETAIL_NEIGHBOUR";
     public static final String DETAIL_TEXT_NEIGHBOUR = "DETAIL_TEXT_NEIGHBOUR";
@@ -43,7 +50,6 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
     public static final String DETAIL_ADRESSE = "DETAIL_ADRESSE";
     public static final String DETAIL_TEL = "DETAIL_TEL";
     public static final String DETAIL_FACEBOOK = "DETAIL_FACEBOOK";
-    public static final String IS_FAV_BOOLEAN = "IS_FAV_BOOLEAN";
     public static final String CURRENT_OBJECT = "CURRENT_OBJECT";
 
 
@@ -62,6 +68,7 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
         args.putBoolean("FORFAV", forFav);
 
 
+
         NeighbourFragment fragment = new NeighbourFragment();
         fragment.setArguments(args);
         return fragment;
@@ -77,12 +84,18 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
 
 
 
+
+
+
         final Bundle arguments = getArguments();
         if (arguments == null || !arguments.containsKey("FORFAV")) {
-            // Set a default or error as you see fit
+
         } else {
             forFav = arguments.getBoolean("FORFAV");
         }
+
+
+
     }
 
 
@@ -90,12 +103,20 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
+
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return view;
+
+
+
+
+
     }
+
+
 
     /**
      * Init the List of neighbours
@@ -104,19 +125,53 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
     private void initList() {
 
 
+
+
+
+
+
         if (forFav) {
 
             mNeighbours = mApiService.getNeighbours();
 
 
+
+            mRecyclerView.getId() ;
+
+
+
+
+
         } else {
             mNeighbours = mApiService.getFavNeighbours();
 
+
         }
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, this));
+
+
+        mNeighbourR = new MyNeighbourRecyclerViewAdapter(mNeighbours, this, forFav);
+
+
+        mRecyclerView.setAdapter( mNeighbourR);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
+
+
 
 
     @Override
@@ -144,9 +199,13 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
      */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
+
         mApiService.deleteNeighbour(event.neighbour);
         initList();
+
     }
+
+
 
     @Override
     public void onClickNeighbourClick(int position) {
@@ -159,11 +218,16 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
         intent.putExtra(DETAIL_PRENOM, mNeighbours.get(position).getName());
         intent.putExtra(DETAIL_ADRESSE, mNeighbours.get(position).getAddress());
         intent.putExtra(DETAIL_TEL, mNeighbours.get(position).getPhoneNumber());
-        intent.putExtra(IS_FAV_BOOLEAN, mNeighbours.get(position).getIsFav());
         intent.putExtra(CURRENT_OBJECT, mNeighbours.get(position));
 
         startActivity(intent);
 
+
+
     }
+
+
+
+
 
 }
